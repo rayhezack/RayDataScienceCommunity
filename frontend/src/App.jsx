@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { motion as Motion, AnimatePresence } from 'framer-motion'
-import { Calculator, BarChart3, Shuffle, Database, Home, ArrowLeft } from 'lucide-react'
+import { Calculator, BarChart3, Shuffle, Database, ArrowLeft } from 'lucide-react'
 import { Button } from '@/components/ui/button.jsx'
 import HomePage from './components/HomePage'
 import CourseIntroduction from './components/CourseIntroduction'
@@ -10,11 +10,16 @@ import SampleSizeCalculator from './components/SampleSizeCalculator'
 import SignificanceTest from './components/SignificanceTest'
 import Rerandomization from './components/Rerandomization'
 import OfflineAABacktrack from './components/OfflineAABacktrack'
+import { toolUseCases } from './homepageContent'
 import './App.css'
 
 function App() {
   const [currentPage, setCurrentPage] = useState('home')
   const [activeTab, setActiveTab] = useState('sample-size')
+  const toolContentById = toolUseCases.reduce((acc, tool) => {
+    acc[tool.id] = tool
+    return acc
+  }, {})
 
   const tabs = [
     {
@@ -51,6 +56,7 @@ function App() {
   }
 
   const ActiveComponent = tabs.find(tab => tab.id === activeTab)?.component
+  const activeTool = toolContentById[activeTab]
   const memberFeatureIds = ['course-qa', 'resume-optimizer', 'course-materials']
 
   return (
@@ -96,13 +102,13 @@ function App() {
             transition={{ duration: 0.3 }}
           >
             <Motion.nav 
-              className="sticky top-0 z-20 border-b border-black/5 bg-[#f5f7f6]/90 backdrop-blur-md"
+              className="sticky top-0 z-20 border-b border-black/5 bg-[#f5f7f6]/92 backdrop-blur-md"
               initial={{ y: -50, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ delay: 0.2, duration: 0.6 }}
             >
               <div className="mx-auto max-w-[1440px] px-4 sm:px-8 lg:px-16">
-                <div className="flex min-h-20 flex-col gap-3 py-3 lg:flex-row lg:items-center lg:justify-between">
+                <div className="flex min-h-20 flex-col gap-3 py-3 xl:flex-row xl:items-center xl:justify-between">
                   <div className="flex items-center justify-between gap-4">
                     <Button
                       variant="ghost"
@@ -117,16 +123,21 @@ function App() {
                       variant="ghost"
                       size="sm"
                       onClick={() => setCurrentPage('home')}
-                      className="flex rounded-full border border-[#132a24]/10 bg-white/50 px-4 text-[#132a24] hover:bg-white"
+                      className="hidden rounded-full border border-[#132a24]/10 bg-white/60 px-3 text-[#132a24] hover:bg-white sm:flex"
                     >
-                      <Home className="w-4 h-4" />
-                      <span>首页</span>
+                      <img src="/logo.png" alt="" className="h-5 w-5 rounded-md object-cover" />
+                      <span>Ray Lab</span>
                     </Button>
                   </div>
+                  <div className="hidden items-center gap-2 rounded-full border border-[#132a24]/10 bg-white/55 px-3 py-2 text-xs font-light uppercase tracking-[0.18em] text-[#4b615a] lg:flex">
+                    <span className="h-2 w-2 rounded-full bg-[#78A184]" />
+                    {activeTool?.phase || 'Experiment Workspace'}
+                  </div>
                   <div className="min-w-0 overflow-x-auto">
-                    <div className="flex min-w-max gap-2 pb-1 lg:justify-end lg:pb-0">
+                    <div className="flex min-w-max gap-2 pb-1 xl:justify-end xl:pb-0">
                       {tabs.map((tab, index) => {
                         const Icon = tab.icon
+                        const meta = toolContentById[tab.id]
                         return (
                           <Motion.button
                             key={tab.id}
@@ -143,7 +154,7 @@ function App() {
                             whileTap={{ scale: 0.95 }}
                           >
                             <Icon className="w-4 h-4" />
-                            <span>{tab.name}</span>
+                            <span>{meta?.shortTitle || tab.name}</span>
                           </Motion.button>
                         )
                       })}
@@ -154,6 +165,37 @@ function App() {
             </Motion.nav>
 
             <main className="mx-auto max-w-[1440px] px-4 py-8 sm:px-8 lg:px-16">
+              {activeTool && (
+                <Motion.section
+                  key={`${activeTab}-intro`}
+                  initial={{ opacity: 0, y: 18 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.45 }}
+                  className="mb-8 overflow-hidden rounded-[2rem] border border-black/5 bg-[#132a24] text-white shadow-[0_18px_60px_-36px_rgba(19,42,36,0.8)]"
+                >
+                  <div className="grid gap-0 lg:grid-cols-[0.9fr_1.1fr]">
+                    <div className="p-7 sm:p-8">
+                      <p className="mb-5 text-xs font-light uppercase tracking-[0.3em] text-[#b8dfbd]">{activeTool.phase}</p>
+                      <h1 className="text-[34px] font-light leading-tight tracking-tight sm:text-5xl">{activeTool.title}</h1>
+                      <p className="mt-5 max-w-2xl text-base font-light leading-relaxed text-white/72">{activeTool.scenario}</p>
+                    </div>
+                    <div className="grid border-t border-white/10 bg-white/[0.04] p-5 sm:grid-cols-3 lg:border-l lg:border-t-0">
+                      <div className="border-white/10 p-3 sm:border-r">
+                        <p className="text-xs font-light uppercase tracking-[0.22em] text-[#b8dfbd]">Input</p>
+                        <p className="mt-3 text-sm font-light leading-relaxed text-white/70">{activeTool.input}</p>
+                      </div>
+                      <div className="border-white/10 p-3 sm:border-r">
+                        <p className="text-xs font-light uppercase tracking-[0.22em] text-[#b8dfbd]">Output</p>
+                        <p className="mt-3 text-sm font-light leading-relaxed text-white/70">{activeTool.outcome.replace('输出：', '')}</p>
+                      </div>
+                      <div className="p-3">
+                        <p className="text-xs font-light uppercase tracking-[0.22em] text-[#b8dfbd]">Decision</p>
+                        <p className="mt-3 text-sm font-light leading-relaxed text-white/70">{activeTool.decision}</p>
+                      </div>
+                    </div>
+                  </div>
+                </Motion.section>
+              )}
               <AnimatePresence mode="wait">
                 <Motion.div
                   key={activeTab}

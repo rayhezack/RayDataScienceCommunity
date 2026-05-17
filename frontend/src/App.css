@@ -177,6 +177,30 @@
   transform-origin: left;
 }
 
+@keyframes dsMarquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.ds-marquee {
+  animation: dsMarquee 36s linear infinite;
+  will-change: transform;
+}
+
+.ds-marquee:hover {
+  animation-play-state: paused;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ds-marquee {
+    animation: none;
+  }
+}
+
 /* Hero Section */
 .hero-section {
   background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
