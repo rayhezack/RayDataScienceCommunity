@@ -1,0 +1,428 @@
+@import url('https://api.fontshare.com/v2/css?f[]=satoshi@300,400,500,700&display=swap');
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+}
+
+:root {
+  --radius: 0.5rem;
+  --background: #f5f7f6;
+  --foreground: #132a24;
+  --card: #ffffff;
+  --card-foreground: #132a24;
+  --popover: #ffffff;
+  --popover-foreground: #132a24;
+  --primary: #132a24;
+  --primary-foreground: #ffffff;
+  --secondary: #eef5f1;
+  --secondary-foreground: #132a24;
+  --muted: #eef5f1;
+  --muted-foreground: #4b615a;
+  --accent: #274f44;
+  --accent-foreground: #ffffff;
+  --destructive: oklch(0.577 0.245 27.325);
+  --border: rgba(19, 42, 36, 0.12);
+  --input: #ffffff;
+  --ring: #274f44;
+  --chart-1: #132a24;
+  --chart-2: #274f44;
+  --chart-3: #78A184;
+  --chart-4: #879f98;
+  --chart-5: #4b615a;
+  --sidebar: #ffffff;
+  --sidebar-foreground: #132a24;
+  --sidebar-primary: #132a24;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #eef5f1;
+  --sidebar-accent-foreground: #132a24;
+  --sidebar-border: rgba(19, 42, 36, 0.12);
+  --sidebar-ring: #274f44;
+}
+
+.dark {
+  --background: oklch(0.145 0 0);
+  --foreground: oklch(0.985 0 0);
+  --card: oklch(0.205 0 0);
+  --card-foreground: oklch(0.985 0 0);
+  --popover: oklch(0.205 0 0);
+  --popover-foreground: oklch(0.985 0 0);
+  --primary: oklch(0.922 0 0);
+  --primary-foreground: oklch(0.205 0 0);
+  --secondary: oklch(0.269 0 0);
+  --secondary-foreground: oklch(0.985 0 0);
+  --muted: oklch(0.269 0 0);
+  --muted-foreground: oklch(0.708 0 0);
+  --accent: oklch(0.269 0 0);
+  --accent-foreground: oklch(0.985 0 0);
+  --destructive: oklch(0.704 0.191 22.216);
+  --border: oklch(1 0 0 / 10%);
+  --input: oklch(1 0 0 / 15%);
+  --ring: oklch(0.556 0 0);
+  --chart-1: oklch(0.488 0.243 264.376);
+  --chart-2: oklch(0.696 0.17 162.48);
+  --chart-3: oklch(0.769 0.188 70.08);
+  --chart-4: oklch(0.627 0.265 303.9);
+  --chart-5: oklch(0.645 0.246 16.439);
+  --sidebar: oklch(0.205 0 0);
+  --sidebar-foreground: oklch(0.985 0 0);
+  --sidebar-primary: oklch(0.488 0.243 264.376);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.269 0 0);
+  --sidebar-accent-foreground: oklch(0.985 0 0);
+  --sidebar-border: oklch(1 0 0 / 10%);
+  --sidebar-ring: oklch(0.556 0 0);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Satoshi', 'Inter', 'Noto Sans SC', 'Noto Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+    line-height: 1.5;
+  }
+  
+  h1 {
+    font-size: inherit;
+    font-weight: inherit;
+    line-height: inherit;
+  }
+  
+  h2 {
+    font-size: inherit;
+    font-weight: inherit;
+    line-height: inherit;
+  }
+  
+  .text-body {
+    font-size: 1rem;
+    font-weight: normal;
+    line-height: 1.5;
+  }
+  
+  .text-link {
+    color: #36a35a;
+    text-decoration: none;
+  }
+  
+  .text-link:hover {
+    text-decoration: underline;
+  }
+}
+
+.nav-link-deep {
+  position: relative;
+  padding-bottom: 0.25rem;
+  transition: color 200ms ease;
+}
+
+.nav-link-deep::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 1px;
+  width: 100%;
+  transform: scaleX(0);
+  transform-origin: right;
+  background: #132a24;
+  transition: transform 240ms ease;
+}
+
+.nav-link-deep:hover {
+  color: #132a24;
+}
+
+.nav-link-deep:hover::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+/* Hero Section */
+.hero-section {
+  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+  position: relative;
+  overflow: hidden;
+  min-height: 60vh;
+}
+
+.hero-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="0.5"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+  opacity: 0.3;
+}
+
+.hero-section > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* Custom styles for A/B Testing Toolbox */
+.toolbox-card {
+  @apply bg-card rounded-lg shadow-lg border border-border p-6 transition-all duration-300 hover:shadow-xl;
+}
+
+.toolbox-input {
+  @apply w-full px-3 py-2 border border-border rounded-md bg-input text-foreground focus:outline-none focus:ring-2 focus:ring-ring transition-all duration-200;
+}
+
+.toolbox-button {
+  @apply bg-primary text-primary-foreground px-6 py-3 rounded-full hover:bg-primary/90 transition-all duration-200 font-medium shadow-lg hover:shadow-xl;
+  position: relative;
+  overflow: hidden;
+}
+
+.toolbox-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s;
+}
+
+.toolbox-button:hover::before {
+  left: 100%;
+}
+
+.toolbox-button:disabled {
+  @apply opacity-50 cursor-not-allowed;
+}
+
+.toolbox-button-secondary {
+  @apply bg-transparent text-primary border-2 border-primary px-6 py-3 rounded-full hover:bg-primary hover:text-white transition-all duration-200 font-medium;
+}
+
+.toolbox-button-secondary:disabled {
+  @apply opacity-50 cursor-not-allowed;
+}
+
+.toolbox-select {
+  @apply w-full px-3 py-2 border border-border rounded-md bg-input text-foreground focus:outline-none focus:ring-2 focus:ring-ring transition-all duration-200;
+}
+
+.toolbox-label {
+  @apply block text-sm font-medium text-foreground mb-2;
+}
+
+.toolbox-tooltip {
+  @apply absolute z-10 px-2 py-1 text-xs text-white bg-gray-800 rounded shadow-lg opacity-0 transition-opacity duration-200;
+}
+
+.progress-bar {
+  @apply w-full bg-secondary rounded-full h-2;
+}
+
+.progress-fill {
+  @apply bg-primary h-2 rounded-full transition-all duration-300;
+}
+
+.result-table {
+  @apply w-full border-collapse border border-border rounded-lg overflow-hidden;
+}
+
+.result-table th {
+  @apply bg-secondary text-foreground px-4 py-2 text-left font-medium border-b border-border;
+}
+
+.result-table td {
+  @apply px-4 py-2 border-b border-border text-foreground;
+}
+
+.result-table tr:hover {
+  @apply bg-muted;
+}
+
+.chart-container {
+  @apply w-full h-64 p-4 bg-card rounded-lg border border-border;
+}
+
+.footer-text {
+  @apply text-muted-foreground text-sm text-center py-4;
+}
+
+/* Enhanced Visual Effects */
+.glass-effect {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.modern-card {
+  background: linear-gradient(145deg, #ffffff 0%, #f8fafc 100%);
+  border: 1px solid rgba(59, 130, 246, 0.1);
+  box-shadow: 
+    0 4px 6px -1px rgba(0, 0, 0, 0.1),
+    0 2px 4px -1px rgba(0, 0, 0, 0.06),
+    0 0 0 1px rgba(59, 130, 246, 0.05);
+}
+
+.modern-card:hover {
+  box-shadow: 
+    0 20px 25px -5px rgba(0, 0, 0, 0.1),
+    0 10px 10px -5px rgba(0, 0, 0, 0.04),
+    0 0 0 1px rgba(59, 130, 246, 0.1);
+  transform: translateY(-2px);
+}
+
+.gradient-text {
+  background: linear-gradient(135deg, #2d5a27, #4a7c59);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.floating-animation {
+  animation: floating 3s ease-in-out infinite;
+}
+
+@keyframes floating {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+.pulse-animation {
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+/* Enhanced Chart Styles */
+.chart-container {
+  @apply relative overflow-hidden rounded-lg;
+  background: linear-gradient(135deg, rgba(45, 90, 39, 0.03) 0%, rgba(74, 124, 89, 0.03) 100%);
+}
+
+.chart-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><defs><pattern id="dots" width="20" height="20" patternUnits="userSpaceOnUse"><circle cx="10" cy="10" r="1" fill="rgba(45,90,39,0.08)"/></pattern></defs><rect width="20" height="20" fill="url(%23dots)"/></svg>');
+  opacity: 0.3;
+  pointer-events: none;
+}
+
+/* Interactive Elements */
+.interactive-card {
+  @apply transition-all duration-300;
+}
+
+.interactive-card:hover {
+  @apply transform scale-105 shadow-2xl;
+}
+
+/* Loading States */
+.loading-shimmer {
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+/* Modern Animations */
+.fade-in-up {
+  animation: fadeInUp 0.6s ease-out forwards;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.scale-in {
+  animation: scaleIn 0.4s ease-out forwards;
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Enhanced Button Styles */
+
+/* Gradient Border Effect */
+.gradient-border {
+  position: relative;
+  background: linear-gradient(145deg, #ffffff, #f8fafc);
+  border-radius: 12px;
+  padding: 2px;
+}
+
+.gradient-border::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  padding: 2px;
+  background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+  border-radius: inherit;
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+}
