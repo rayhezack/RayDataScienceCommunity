@@ -11,7 +11,6 @@ import {
   FileText,
   FlaskConical,
   HelpCircle,
-  LineChart,
   Mail,
   MessageCircle,
   Quote,
@@ -194,8 +193,12 @@ const HomePage = ({ onNavigate }) => {
             className="group flex items-center gap-3 text-left"
             aria-label="返回首页顶部"
           >
-            <span className="flex h-11 w-11 items-center justify-center rounded-[14px] bg-[#78A184] text-white transition-all duration-500 group-hover:rotate-3 group-hover:scale-105 group-hover:bg-[#132a24]">
-              <LineChart className="h-6 w-6" />
+            <span className="flex h-12 w-12 items-center justify-center overflow-hidden rounded-2xl bg-white shadow-[0_8px_24px_-16px_rgba(19,42,36,0.35)] ring-1 ring-[#132a24]/10 transition-all duration-500 group-hover:rotate-3 group-hover:scale-105">
+              <img
+                src="/logo.png"
+                alt="Ray Data Science Lab Logo"
+                className="h-full w-full object-cover"
+              />
             </span>
             <span>
               <span className="block text-xl font-light tracking-tight text-[#132a24] sm:text-2xl">
